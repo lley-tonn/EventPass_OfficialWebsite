@@ -4,13 +4,20 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'media', // Enable system-based dark mode
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         primary: '#FFA500',
-        lightBg: '#f8f8f8',
-        darkBg: '#000000',
+        surface: '#0d0d0d',
+        surfaceElevated: '#151515',
+        borderMuted: '#1f1f1f',
+      },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        'soft-glow': '0 20px 45px rgba(0, 0, 0, 0.55)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

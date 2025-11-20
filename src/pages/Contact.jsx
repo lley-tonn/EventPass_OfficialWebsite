@@ -25,14 +25,14 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-20"
+      className="min-h-screen bg-black pt-20"
     >
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-16">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-12"
+          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
         >
           Contact Support
         </motion.h1>
@@ -42,7 +42,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             onSubmit={handleSubmit}
-            className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg"
+            className="rounded-2xl border border-white/5 bg-[#0f0f0f]/90 p-8 shadow-soft-glow"
           >
             <div className="mb-6">
               <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -55,7 +55,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="w-full rounded-xl border border-white/5 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20"
               />
             </div>
             <div className="mb-6">
@@ -69,7 +69,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="w-full rounded-xl border border-white/5 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20"
               />
             </div>
             <div className="mb-6">
@@ -83,12 +83,12 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="w-full rounded-2xl border border-white/5 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20"
               ></textarea>
             </div>
             <button
               type="submit"
-              className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold glow hover:scale-105 transition-transform"
+              className="w-full rounded-xl border border-primary/60 bg-primary py-3 text-sm font-semibold tracking-wide text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-soft-glow"
             >
               Send Message
             </button>
@@ -97,16 +97,16 @@ const Contact = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-12 text-center"
+            className="mt-12 text-center text-gray-400"
           >
-            <h2 className="text-2xl font-semibold mb-4">Other Ways to Reach Us</h2>
-            <div className="space-y-2">
-              <p><strong>Email:</strong> support@eventpass.ug</p>
-              <p><strong>Phone:</strong> +256 123 456 789</p>
-              <div className="flex justify-center space-x-4 mt-4">
-                <a href="#" className="text-primary hover:underline">Facebook</a>
-                <a href="#" className="text-primary hover:underline">Twitter</a>
-                <a href="#" className="text-primary hover:underline">Instagram</a>
+            <h2 className="text-2xl font-semibold text-white mb-4">Other Ways to Reach Us</h2>
+            <div className="space-y-2 text-sm">
+              <p><span className="text-gray-500">Email:</span> support@eventpass.ug</p>
+              <p><span className="text-gray-500">Phone:</span> +256 123 456 789</p>
+              <div className="mt-4 flex justify-center space-x-4 text-sm">
+                <a href="#" className="text-gray-500 transition-colors hover:text-white">Facebook</a>
+                <a href="#" className="text-gray-500 transition-colors hover:text-white">Twitter</a>
+                <a href="#" className="text-gray-500 transition-colors hover:text-white">Instagram</a>
               </div>
             </div>
           </motion.div>

@@ -44,14 +44,14 @@ const FAQs = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-20"
+      className="min-h-screen bg-black pt-20"
     >
-      <div className="container mx-auto px-4 py-12 max-w-3xl">
+      <div className="container mx-auto max-w-3xl px-4 py-16">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-12"
+          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
         >
           Frequently Asked Questions
         </motion.h1>
@@ -62,15 +62,15 @@ const FAQs = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg"
+              className="rounded-2xl border border-white/5 bg-[#0f0f0f]/90 shadow-soft-glow transition-all duration-300 hover:-translate-y-1"
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-6 py-4 text-left text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-white/30"
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold">{faq.question}</h3>
-                  <span className="text-primary text-xl">
+                  <h3 className="text-base font-semibold text-white">{faq.question}</h3>
+                  <span className="text-xl text-primary">
                     {openIndex === index ? '−' : '+'}
                   </span>
                 </div>
@@ -81,9 +81,9 @@ const FAQs = () => {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="px-6 pb-6"
+                  className="px-6 pb-6 text-sm text-gray-400"
                 >
-                  <p className="text-gray-600 dark:text-gray-400">{faq.answer}</p>
+                  <p>{faq.answer}</p>
                 </motion.div>
               )}
             </motion.div>

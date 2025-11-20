@@ -16,7 +16,7 @@ import Blog from './pages/Blog';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-lightBg dark:bg-darkBg text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <div className="min-h-screen bg-black text-gray-100 font-sans">
         <Navbar />
         <main>
           <Routes>

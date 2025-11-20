@@ -28,31 +28,31 @@ const Blog = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-20"
+      className="min-h-screen bg-black pt-20"
     >
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-16">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-12"
+          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
         >
           EventPass Blog
         </motion.h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, index) => (
             <motion.article
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+              className="cursor-pointer rounded-2xl border border-white/5 bg-[#0f0f0f]/85 p-6 shadow-soft-glow transition-all duration-300 hover:-translate-y-1 hover:border-white/15"
             >
-              <h2 className="text-xl font-semibold mb-4 text-primary hover:text-orange-600 transition-colors">
+              <h2 className="mb-4 text-lg font-semibold text-white">
                 {post.title}
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">{post.excerpt}</p>
-              <div className="flex justify-between text-sm text-gray-500 dark:text-gray-500">
+              <p className="mb-4 text-sm text-gray-400">{post.excerpt}</p>
+              <div className="flex justify-between text-xs uppercase tracking-[0.3em] text-gray-500">
                 <span>{post.date}</span>
                 <span>{post.readTime}</span>
               </div>
@@ -63,9 +63,9 @@ const Blog = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mt-12"
+          className="mt-12 text-center text-sm text-gray-500"
         >
-          <p className="text-gray-600 dark:text-gray-400">More articles coming soon...</p>
+          <p>More articles coming soon...</p>
         </motion.div>
       </div>
     </motion.div>

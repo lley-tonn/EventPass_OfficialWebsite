@@ -51,30 +51,30 @@ const HelpCenter = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-20"
+      className="min-h-screen bg-black pt-20"
     >
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-16">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-12"
+          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
         >
           Help Center
         </motion.h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {sections.map((section, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+              className="rounded-2xl border border-white/5 bg-[#0f0f0f]/80 p-6 shadow-soft-glow transition-all duration-300 hover:-translate-y-1"
             >
-              <h3 className="text-xl font-semibold mb-4 text-primary">{section.title}</h3>
-              <ul className="space-y-2">
+              <h3 className="mb-3 text-base font-semibold uppercase tracking-[0.3em] text-gray-400">{section.title}</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
                 {section.items.map((item, itemIndex) => (
-                  <li key={itemIndex} className="text-gray-600 dark:text-gray-400 hover:text-primary cursor-pointer transition-colors">
+                  <li key={itemIndex} className="cursor-pointer transition-colors hover:text-white">
                     {item}
                   </li>
                 ))}
@@ -88,11 +88,11 @@ const HelpCenter = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="text-2xl font-semibold mb-4">Still Need Help?</h2>
-          <p className="mb-6">Can't find what you're looking for? Contact our support team.</p>
+          <h2 className="mb-4 text-2xl font-semibold text-white">Still Need Help?</h2>
+          <p className="mb-6 text-sm text-gray-400">Can't find what you're looking for? Contact our support team.</p>
           <Link
             to="/contact"
-            className="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors glow"
+            className="inline-flex items-center justify-center rounded-lg border border-primary/60 bg-primary px-6 py-3 text-sm font-semibold tracking-wide text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-soft-glow"
           >
             Contact Support
           </Link>

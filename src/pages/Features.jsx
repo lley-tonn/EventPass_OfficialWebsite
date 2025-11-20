@@ -46,33 +46,33 @@ const Features = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-20"
+      className="min-h-screen bg-black pt-20"
     >
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-16">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-12"
+          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
         >
           Powerful Features for Everyone
         </motion.h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+              className="rounded-2xl border border-white/5 bg-[#0f0f0f]/80 p-6 shadow-soft-glow transition-all duration-300 hover:-translate-y-1 hover:border-white/15"
             >
-              <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-4 text-primary">{feature.title}</h3>
-              <p className="mb-4">{feature.description}</p>
-              <ul className="space-y-1">
+              <div className="mb-4 text-2xl">{feature.icon}</div>
+              <h3 className="mb-3 text-lg font-semibold text-white">{feature.title}</h3>
+              <p className="mb-4 text-sm text-gray-400">{feature.description}</p>
+              <ul className="space-y-1 text-sm text-gray-500">
                 {feature.details.map((detail, detailIndex) => (
                   <li key={detailIndex} className="flex items-center text-sm">
-                    <span className="text-primary mr-2">•</span>
+                    <span className="mr-2 text-primary">•</span>
                     {detail}
                   </li>
                 ))}
