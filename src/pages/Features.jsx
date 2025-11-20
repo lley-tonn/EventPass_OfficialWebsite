@@ -63,13 +63,18 @@ const Features = () => {
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{
+                y: -8,
+                scale: 1.02,
+                boxShadow: '0 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.1)'
+              }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="rounded-2xl border border-white/5 bg-[#0f0f0f]/80 p-6 shadow-soft-glow transition-all duration-300 hover:-translate-y-1 hover:border-white/15"
+              className="rounded-2xl border border-white/5 bg-[#0f0f0f]/80 p-6 shadow-soft-glow transition-all duration-300 hover:border-white/15 cursor-pointer"
             >
               <div className="mb-4 text-2xl">{feature.icon}</div>
               <h3 className="mb-3 text-lg font-semibold text-white">{feature.title}</h3>
               <p className="mb-4 text-sm text-gray-400">{feature.description}</p>
-              <ul className="space-y-1 text-sm text-gray-500">
+              <ul className="space-y-2 text-sm text-gray-500">
                 {feature.details.map((detail, detailIndex) => (
                   <li key={detailIndex} className="flex items-center text-sm">
                     <span className="mr-2 text-primary">•</span>

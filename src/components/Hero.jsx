@@ -33,12 +33,20 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-col sm:flex-row justify-center gap-3"
         >
-          <button className={primaryButton}>
+          <motion.button
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className={primaryButton}
+          >
             Download for Android
-          </button>
-          <button className={secondaryButton}>
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className={secondaryButton}
+          >
             Download for iOS
-          </button>
+          </motion.button>
         </motion.div>
       </div>
       <motion.div

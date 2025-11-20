@@ -28,8 +28,13 @@ const WhyEventPass = () => {
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{
+                y: -8,
+                scale: 1.02,
+                boxShadow: '0 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.1)'
+              }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="rounded-2xl border border-white/5 bg-[rgba(17,17,17,0.9)] p-6 text-left shadow-soft-glow transition-all duration-300 hover:-translate-y-1 hover:border-white/20"
+              className="rounded-2xl border border-white/5 bg-[rgba(17,17,17,0.9)] p-6 text-left shadow-soft-glow transition-all duration-300 hover:border-white/20 cursor-pointer"
             >
               <h3 className="mb-3 text-lg font-semibold text-primary">{feature.title}</h3>
               <p className="text-sm text-gray-400">{feature.description}</p>

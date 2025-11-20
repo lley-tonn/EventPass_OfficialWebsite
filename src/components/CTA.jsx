@@ -27,12 +27,20 @@ const CTA = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col justify-center gap-3 sm:flex-row"
         >
-          <button className="rounded-lg border border-primary/60 bg-primary px-6 py-3 text-sm font-semibold tracking-wide text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-soft-glow">
+          <motion.button
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="rounded-lg border border-primary/60 bg-primary px-6 py-3 text-sm font-semibold tracking-wide text-black transition-all duration-300 hover:bg-primary/90 hover:shadow-soft-glow"
+          >
             Download for Android
-          </button>
-          <button className="rounded-lg border border-primary/40 bg-transparent px-6 py-3 text-sm font-semibold tracking-wide text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/5 hover:text-white hover:shadow-soft-glow">
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="rounded-lg border border-primary/40 bg-transparent px-6 py-3 text-sm font-semibold tracking-wide text-primary transition-all duration-300 hover:bg-primary/5 hover:text-white hover:shadow-soft-glow"
+          >
             Download for iOS
-          </button>
+          </motion.button>
         </motion.div>
       </div>
     </section>

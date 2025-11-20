@@ -46,12 +46,20 @@ const HowItWorks = () => {
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -6 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="text-center"
+              className="text-center cursor-pointer"
             >
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 bg-primary/15 text-xl text-primary shadow-soft-glow">
+              <motion.div
+                whileHover={{
+                  scale: 1.1,
+                  boxShadow: '0 15px 35px rgba(255, 165, 0, 0.3)'
+                }}
+                transition={{ duration: 0.3 }}
+                className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 bg-primary/15 text-xl text-primary shadow-soft-glow"
+              >
                 {step.icon}
-              </div>
+              </motion.div>
               <h3 className="text-sm uppercase tracking-[0.3em] text-gray-400">Step {step.step}</h3>
               <h4 className="mb-3 text-lg font-semibold text-white">{step.title}</h4>
               <p className="text-sm text-gray-400">{step.description}</p>
