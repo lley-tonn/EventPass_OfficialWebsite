@@ -3,7 +3,7 @@ import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 
 const Testimonials = () => {
   const prefersReducedMotion = useReducedMotion();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
 
   const testimonials = [
     {
@@ -48,36 +48,49 @@ const Testimonials = () => {
       avatar: '💼',
       rating: 5,
     },
+    {
+      name: 'Linda A.',
+      role: 'Event Attendee',
+      content: 'Quick ticket purchase and easy entry. The app works perfectly every time!',
+      avatar: '🎫',
+      rating: 5,
+    },
+    {
+      name: 'Robert P.',
+      role: 'Music Producer',
+      content: 'Managing ticket sales for my events has never been this simple and efficient.',
+      avatar: '🎼',
+      rating: 5,
+    },
   ];
+
+  // Get 4 testimonials to display based on startIndex
+  const getDisplayedTestimonials = () => {
+    const displayed = [];
+    for (let i = 0; i < 4; i++) {
+      const index = (startIndex + i) % testimonials.length;
+      displayed.push(testimonials[index]);
+    }
+    return displayed;
+  };
 
   // Auto-rotate testimonials every 4 seconds
   useEffect(() => {
     if (prefersReducedMotion) return;
     
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      setStartIndex((prev) => (prev + 1) % testimonials.length);
     }, 4000);
 
     return () => clearInterval(interval);
   }, [testimonials.length, prefersReducedMotion]);
 
-  const handleDotClick = (index) => {
-    setCurrentIndex(index);
+  const handleNext = () => {
+    setStartIndex((prev) => (prev + 1) % testimonials.length);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const animationConfig = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-    transition: { duration: prefersReducedMotion ? 0 : 0.3, ease: 'easeInOut' },
+    setStartIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
   const sectionAnimation = {
@@ -86,6 +99,8 @@ const Testimonials = () => {
     transition: { duration: prefersReducedMotion ? 0 : 0.2, ease: 'easeOut' },
     viewport: { once: true, margin: '-50px' },
   };
+
+  const displayedTestimonials = getDisplayedTestimonials();
 
   return (
     <section className="py-20 bg-[#050505]" aria-labelledby="testimonials-heading">
@@ -98,75 +113,92 @@ const Testimonials = () => {
           What Our Users Say
         </motion.h2>
 
-        {/* Testimonial Display */}
-        <div className="relative max-w-4xl mx-auto mb-8 min-h-[200px] flex items-center justify-center">
+        {/* Testimonial Cards Grid */}
+        <div className="relative">
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentIndex}
-              {...animationConfig}
-              className="w-full"
+              key={startIndex}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.25, ease: 'easeInOut' }}
+              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
             >
-              <div className="rounded-2xl border border-white/5 bg-[rgba(15,15,15,0.85)] p-8 shadow-soft-glow">
-                <div className="flex items-center mb-4">
-                  <span className="mr-4 text-4xl">{testimonials[currentIndex].avatar}</span>
-                  <div>
-                    <h3 className="text-card-title font-semibold text-white">
-                      {testimonials[currentIndex].name}
-                    </h3>
-                    <p className="text-meta text-gray-500">{testimonials[currentIndex].role}</p>
+              {displayedTestimonials.map((testimonial, cardIndex) => {
+                const globalIndex = (startIndex + cardIndex) % testimonials.length;
+                return (
+                  <div
+                    key={`card-${cardIndex}-${globalIndex}`}
+                    className="relative h-full min-h-[280px]"
+                  >
+                    <div className="h-full rounded-2xl border border-white/5 bg-[rgba(15,15,15,0.85)] p-6 shadow-soft-glow flex flex-col">
+                      <div className="flex items-center mb-4">
+                        <span className="mr-3 text-3xl">{testimonial.avatar}</span>
+                        <div>
+                          <h3 className="text-card-title font-semibold text-white">
+                            {testimonial.name}
+                          </h3>
+                          <p className="text-meta text-gray-500">{testimonial.role}</p>
+                        </div>
+                      </div>
+                      <div className="mb-4 flex text-primary">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <span key={i} className="text-sm">★</span>
+                        ))}
+                      </div>
+                      <p className="text-body text-gray-300 leading-relaxed flex-grow">
+                        "{testimonial.content}"
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="mb-4 flex text-primary">
-                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <span key={i} className="text-lg">★</span>
-                  ))}
-                </div>
-                <p className="text-body text-gray-300 leading-relaxed">
-                  "{testimonials[currentIndex].content}"
-                </p>
-              </div>
+                );
+              })}
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Arrows */}
+          {/* Navigation Controls */}
           {!prefersReducedMotion && (
-            <>
+            <div className="flex items-center justify-center gap-4 mt-8">
               <button
                 onClick={handlePrev}
-                aria-label="Previous testimonial"
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 rounded-full border border-white/10 bg-black/50 p-2 text-white transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 md:-translate-x-12"
+                aria-label="Previous testimonials"
+                className="rounded-full border border-white/10 bg-black/50 p-2 text-white transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
+              
+              {/* Dot Indicators */}
+              <div className="flex gap-2">
+                {Array.from({ length: Math.ceil(testimonials.length / 4) }).map((_, groupIndex) => {
+                  const isActive = Math.floor(startIndex / 4) === groupIndex;
+                  return (
+                    <button
+                      key={groupIndex}
+                      onClick={() => setStartIndex(groupIndex * 4)}
+                      aria-label={`Go to testimonial group ${groupIndex + 1}`}
+                      className={`h-2 rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+                        isActive
+                          ? 'w-8 bg-primary'
+                          : 'w-2 bg-white/20 hover:bg-white/40'
+                      }`}
+                    />
+                  );
+                })}
+              </div>
+
               <button
                 onClick={handleNext}
-                aria-label="Next testimonial"
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 rounded-full border border-white/10 bg-black/50 p-2 text-white transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 md:translate-x-12"
+                aria-label="Next testimonials"
+                className="rounded-full border border-white/10 bg-black/50 p-2 text-white transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
-            </>
+            </div>
           )}
-        </div>
-
-        {/* Dot Indicators */}
-        <div className="flex justify-center gap-2">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handleDotClick(index)}
-              aria-label={`Go to testimonial ${index + 1}`}
-              className={`h-2 rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
-                index === currentIndex
-                  ? 'w-8 bg-primary'
-                  : 'w-2 bg-white/20 hover:bg-white/40'
-              }`}
-            />
-          ))}
         </div>
       </div>
     </section>
