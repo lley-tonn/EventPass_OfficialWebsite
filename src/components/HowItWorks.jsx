@@ -1,7 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const HowItWorks = () => {
+  const prefersReducedMotion = useReducedMotion();
+  
   const steps = [
     {
       step: 1,
@@ -29,13 +31,25 @@ const HowItWorks = () => {
     },
   ];
 
+  const animationConfig = {
+    initial: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: prefersReducedMotion ? 0 : 0.2, ease: 'easeOut' },
+    viewport: { once: true, margin: '-50px' },
+  };
+
+  const iconHoverConfig = prefersReducedMotion
+    ? {}
+    : {
+        scale: 1.05,
+        transition: { duration: 0.15, ease: 'easeOut' },
+      };
+
   return (
     <section className="py-20 bg-[#050505]">
       <div className="container mx-auto px-4">
         <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          {...animationConfig}
           className="mb-12 text-center text-h2 font-semibold text-white"
         >
           How It Works
@@ -44,18 +58,12 @@ const HowItWorks = () => {
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              {...animationConfig}
+              transition={{ ...animationConfig.transition, delay: prefersReducedMotion ? 0 : index * 0.03 }}
               className="text-center cursor-pointer"
             >
               <motion.div
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: '0 15px 35px rgba(255, 165, 0, 0.3)'
-                }}
-                transition={{ duration: 0.3 }}
+                whileHover={iconHoverConfig}
                 className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 bg-primary/15 text-xl text-primary shadow-soft-glow"
               >
                 {step.icon}

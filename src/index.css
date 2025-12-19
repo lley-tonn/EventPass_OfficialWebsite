@@ -249,3 +249,26 @@ textarea::placeholder {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-bounce {
+    animation: none !important;
+  }
+}
+
+/* Optimize animations for low-end devices */
+@media (max-width: 768px) {
+  * {
+    will-change: auto !important;
+  }
+}
