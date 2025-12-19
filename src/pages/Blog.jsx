@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const Blog = () => {
   const posts = [
     {
-      title: 'How EventPass is Revolutionizing Event Ticketing in Uganda',
+      title: 'How CinQ is Revolutionizing Event Ticketing in Uganda',
       excerpt: 'Discover how our mobile-first platform is changing the way Ugandans experience events.',
       date: 'January 15, 2024',
       readTime: '5 min read',
@@ -17,7 +17,7 @@ const Blog = () => {
     },
     {
       title: 'Security Best Practices for Event Organizers',
-      excerpt: 'Learn how to keep your events safe and secure with EventPass verification systems.',
+      excerpt: 'Learn how to keep your events safe and secure with CinQ verification systems.',
       date: 'January 5, 2024',
       readTime: '4 min read',
     },
@@ -35,9 +35,9 @@ const Blog = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
+          className="mb-12 text-center text-h1 font-semibold text-white"
         >
-          EventPass Blog
+          CinQ Blog
         </motion.h1>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, index) => (
@@ -48,11 +48,11 @@ const Blog = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="cursor-pointer rounded-2xl border border-white/5 bg-[#0f0f0f]/85 p-6 shadow-soft-glow transition-all duration-300 hover:-translate-y-1 hover:border-white/15"
             >
-              <h2 className="mb-4 text-lg font-semibold text-white">
+              <h2 className="mb-4 text-card-title font-semibold text-white">
                 {post.title}
               </h2>
-              <p className="mb-4 text-sm text-gray-400">{post.excerpt}</p>
-              <div className="flex justify-between text-xs uppercase tracking-[0.3em] text-gray-500">
+              <p className="mb-4 text-body text-gray-400">{post.excerpt}</p>
+              <div className="flex justify-between text-label uppercase tracking-[0.3em] text-gray-500">
                 <span>{post.date}</span>
                 <span>{post.readTime}</span>
               </div>
@@ -63,7 +63,7 @@ const Blog = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mt-12 text-center text-sm text-gray-500"
+          className="mt-12 text-center text-body text-gray-500"
         >
           <p>More articles coming soon...</p>
         </motion.div>

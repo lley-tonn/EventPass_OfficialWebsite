@@ -9,17 +9,17 @@ const CTA = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-4 text-3xl font-semibold md:text-4xl"
+          className="mb-4 text-h2 font-semibold"
         >
-          Ready to Experience EventPass?
+          Ready to Experience CinQ?
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mb-8 max-w-2xl text-base text-gray-400"
+          className="mx-auto mb-8 max-w-2xl text-body text-gray-400"
         >
-          Join thousands of users and organizers already using EventPass for seamless event experiences.
+          Join thousands of users and organizers already using CinQ for seamless event experiences.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -30,14 +30,14 @@ const CTA = () => {
           <motion.button
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="rounded-lg border border-primary/60 bg-primary px-6 py-3 text-sm font-semibold tracking-wide text-black transition-all duration-300 hover:bg-primary/90 hover:shadow-soft-glow"
+            className="rounded-lg border border-primary/60 bg-primary px-6 py-3 text-button font-semibold tracking-wide text-black transition-all duration-300 hover:bg-primary/90 hover:shadow-soft-glow"
           >
             Download for Android
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="rounded-lg border border-primary/40 bg-transparent px-6 py-3 text-sm font-semibold tracking-wide text-primary transition-all duration-300 hover:bg-primary/5 hover:text-white hover:shadow-soft-glow"
+            className="rounded-lg border border-primary/40 bg-transparent px-6 py-3 text-button font-semibold tracking-wide text-primary transition-all duration-300 hover:bg-primary/5 hover:text-white hover:shadow-soft-glow"
           >
             Download for iOS
           </motion.button>

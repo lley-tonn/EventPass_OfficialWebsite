@@ -1,4 +1,4 @@
-# EventPass UG Website Development TODO
+# CinQ UG Website Development TODO
 
 ## Project Initialization
 - [ ] Initialize Vite React project in current directory
@@ -42,7 +42,7 @@
 - [ ] Define routes for all pages
 
 ## Content and Data
-- [ ] Add EventPass content to pages
+- [ ] Add CinQ content to pages
 - [ ] Create example data for FAQs, features, testimonials
 - [ ] Add placeholder images and icons
 

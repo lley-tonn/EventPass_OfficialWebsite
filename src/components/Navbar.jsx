@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navButtonClasses =
-  'rounded-lg border border-primary/60 bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:text-black hover:shadow-soft-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50';
+  'rounded-lg border border-primary/60 bg-primary px-4 py-2 text-button font-semibold uppercase tracking-[0.2em] text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:text-black hover:shadow-soft-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50';
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -50,6 +50,42 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const menuElement = menuRef.current;
+    if (!menuElement) return;
+
+    const focusableElements = menuElement.querySelectorAll(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    const handleTabKey = (e) => {
+      if (e.key !== 'Tab') return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement?.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    };
+
+    menuElement.addEventListener('keydown', handleTabKey);
+    firstElement?.focus();
+
+    return () => {
+      menuElement.removeEventListener('keydown', handleTabKey);
+    };
+  }, [isMenuOpen]);
+
   return (
     <motion.nav
       initial={{ y: -80 }}
@@ -59,10 +95,10 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="text-base font-semibold uppercase tracking-[0.3em] text-primary">
-            EventPass UG
+          <Link to="/" className="text-nav font-semibold uppercase tracking-[0.3em] text-primary">
+            CinQ UG
           </Link>
-          <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
+          <div className="hidden md:flex items-center space-x-6 text-nav font-medium">
             {navLinks.map((link) => (
               <Link key={link.to} to={link.to} className="text-gray-400 transition-all duration-300 hover:text-white hover:tracking-wide">
                 {link.label}
@@ -129,6 +165,9 @@ const Navbar = () => {
               exit={{ opacity: 0, x: '100%' }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="md:hidden fixed top-0 right-0 z-50 flex h-full w-full max-w-md flex-col bg-gradient-to-br from-[#0a0a0a] via-black to-[#0a0a0a] border-l border-primary/20 shadow-2xl"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
             >
               {/* Header with Close Button */}
               <div className="flex items-center justify-between px-8 py-6 border-b border-white/5">
@@ -136,7 +175,7 @@ const Navbar = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2, duration: 0.4 }}
-                  className="text-lg font-bold uppercase tracking-[0.3em] text-primary"
+                  className="text-h3 font-bold uppercase tracking-[0.3em] text-primary"
                 >
                   Menu
                 </motion.div>
@@ -145,7 +184,8 @@ const Navbar = () => {
                   animate={{ opacity: 1, rotate: 0 }}
                   transition={{ delay: 0.2, duration: 0.4 }}
                   onClick={closeMenu}
-                  className="rounded-full border border-white/10 p-2.5 text-white transition-all duration-300 hover:border-primary hover:bg-primary/10 hover:text-primary hover:rotate-90"
+                  aria-label="Close menu"
+                  className="rounded-full border border-white/10 p-2.5 text-white transition-all duration-300 hover:border-primary hover:bg-primary/10 hover:text-primary hover:rotate-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                 >
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
                     <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -171,7 +211,7 @@ const Navbar = () => {
                         <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                         <div className="absolute left-0 top-0 h-full w-1 bg-primary scale-y-0 transition-transform duration-300 group-hover:scale-y-100 origin-top" />
                         <div className="relative flex items-center justify-between">
-                          <span className="text-base font-medium text-gray-300 transition-colors duration-300 group-hover:text-white">
+                          <span className="text-nav font-medium text-gray-300 transition-colors duration-300 group-hover:text-white">
                             {link.label}
                           </span>
                           <svg
@@ -196,9 +236,9 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.4 }}
               >
-                <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-4">Download App</p>
+                <p className="text-label uppercase tracking-[0.2em] text-gray-500 mb-4">Download App</p>
                 <button
-                  className="w-full rounded-xl border border-primary/60 bg-primary px-6 py-3.5 text-sm font-bold uppercase tracking-[0.15em] text-black transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02] active:scale-95"
+                  className="w-full rounded-xl border border-primary/60 bg-primary px-6 py-3.5 text-button font-bold uppercase tracking-[0.15em] text-black transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02] active:scale-95"
                   onClick={closeMenu}
                 >
                   <div className="flex items-center justify-center gap-2">
@@ -209,7 +249,7 @@ const Navbar = () => {
                   </div>
                 </button>
                 <button
-                  className="w-full rounded-xl border border-primary/40 bg-transparent px-6 py-3.5 text-sm font-bold uppercase tracking-[0.15em] text-primary transition-all duration-300 hover:bg-primary/10 hover:border-primary hover:shadow-lg hover:shadow-primary/10 hover:scale-[1.02] active:scale-95"
+                  className="w-full rounded-xl border border-primary/40 bg-transparent px-6 py-3.5 text-button font-bold uppercase tracking-[0.15em] text-primary transition-all duration-300 hover:bg-primary/10 hover:border-primary hover:shadow-lg hover:shadow-primary/10 hover:scale-[1.02] active:scale-95"
                   onClick={closeMenu}
                 >
                   <div className="flex items-center justify-center gap-2">

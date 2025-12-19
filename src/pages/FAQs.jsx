@@ -6,16 +6,16 @@ const FAQs = () => {
 
   const faqs = [
     {
-      question: 'What is EventPass?',
-      answer: 'EventPass is a mobile-first event ticketing platform designed for Uganda. It allows users to discover events, purchase tickets securely, and access QR-code tickets directly on their phones.',
+      question: 'What is CinQ?',
+      answer: 'CinQ is a mobile-first event ticketing platform designed for Uganda. It allows users to discover events, purchase tickets securely, and access QR-code tickets directly on their phones.',
     },
     {
-      question: 'Is EventPass safe?',
-      answer: 'Yes, EventPass uses bank-level security encryption for all transactions and data storage. We comply with international security standards to protect your information.',
+      question: 'Is CinQ safe?',
+      answer: 'Yes, CinQ uses bank-level security encryption for all transactions and data storage. We comply with international security standards to protect your information.',
     },
     {
       question: 'How do I buy a ticket?',
-      answer: 'Download the EventPass app, create an account, browse events, select your tickets, and pay using MTN MoMo, Airtel Money, or card. Your digital ticket will be available instantly.',
+      answer: 'Download the CinQ app, create an account, browse events, select your tickets, and pay using MTN MoMo, Airtel Money, or card. Your digital ticket will be available instantly.',
     },
     {
       question: 'How do organizers get paid?',
@@ -27,7 +27,7 @@ const FAQs = () => {
     },
     {
       question: 'How does QR verification work?',
-      answer: 'Each ticket has a unique QR code. At the event entrance, organizers scan the code using the EventPass app to verify authenticity and mark entry.',
+      answer: 'Each ticket has a unique QR code. At the event entrance, organizers scan the code using the CinQ app to verify authenticity and mark entry.',
     },
     {
       question: 'Is my data secure?',
@@ -51,7 +51,7 @@ const FAQs = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
+          className="mb-12 text-center text-h1 font-semibold text-white"
         >
           Frequently Asked Questions
         </motion.h1>
@@ -66,10 +66,10 @@ const FAQs = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-white/30"
+                className="w-full px-6 py-4 text-left text-card-title font-medium text-white focus:outline-none focus:ring-2 focus:ring-white/30"
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="text-base font-semibold text-white">{faq.question}</h3>
+                  <h3 className="text-card-title font-semibold text-white">{faq.question}</h3>
                   <span className="text-xl text-primary">
                     {openIndex === index ? '−' : '+'}
                   </span>
@@ -81,7 +81,7 @@ const FAQs = () => {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="px-6 pb-6 text-sm text-gray-400"
+                  className="px-6 pb-6 text-body text-gray-400"
                 >
                   <p>{faq.answer}</p>
                 </motion.div>

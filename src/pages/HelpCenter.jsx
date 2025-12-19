@@ -58,7 +58,7 @@ const HelpCenter = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
+          className="mb-12 text-center text-h1 font-semibold text-white"
         >
           Help Center
         </motion.h1>
@@ -71,8 +71,8 @@ const HelpCenter = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="rounded-2xl border border-white/5 bg-[#0f0f0f]/80 p-6 shadow-soft-glow transition-all duration-300 hover:-translate-y-1"
             >
-              <h3 className="mb-3 text-base font-semibold uppercase tracking-[0.3em] text-gray-400">{section.title}</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <h3 className="mb-3 text-card-title font-semibold uppercase tracking-[0.3em] text-gray-400">{section.title}</h3>
+              <ul className="space-y-2 text-body text-gray-400">
                 {section.items.map((item, itemIndex) => (
                   <li key={itemIndex} className="cursor-pointer transition-colors hover:text-white">
                     {item}
@@ -88,11 +88,11 @@ const HelpCenter = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="mb-4 text-2xl font-semibold text-white">Still Need Help?</h2>
-          <p className="mb-6 text-sm text-gray-400">Can't find what you're looking for? Contact our support team.</p>
+          <h2 className="mb-4 text-h2 font-semibold text-white">Still Need Help?</h2>
+          <p className="mb-6 text-body text-gray-400">Can't find what you're looking for? Contact our support team.</p>
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center rounded-lg border border-primary/60 bg-primary px-6 py-3 text-sm font-semibold tracking-wide text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-soft-glow"
+            className="inline-flex items-center justify-center rounded-lg border border-primary/60 bg-primary px-6 py-3 text-button font-semibold tracking-wide text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-soft-glow"
           >
             Contact Support
           </Link>

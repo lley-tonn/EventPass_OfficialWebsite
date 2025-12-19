@@ -34,7 +34,7 @@ const Benefits = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
+          className="mb-12 text-center text-h2 font-semibold text-white"
         >
           Benefits for Everyone
         </motion.h2>
@@ -54,9 +54,9 @@ const Benefits = () => {
             >
               <div className="flex items-center mb-6">
                 <span className="mr-4 text-3xl">{benefit.icon}</span>
-                <h3 className="text-xl font-semibold text-primary">{benefit.title}</h3>
+                <h3 className="text-h3 font-semibold text-primary">{benefit.title}</h3>
               </div>
-              <ul className="space-y-3 text-sm text-gray-400">
+              <ul className="space-y-3 text-body text-gray-400">
                 {benefit.items.map((item, itemIndex) => (
                   <li key={itemIndex} className="flex items-center">
                     <span className="mr-2 text-primary">✓</span>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
-import WhyEventPass from '../components/WhyEventPass';
+import WhyCinQ from '../components/WhyCinQ';
 import HowItWorks from '../components/HowItWorks';
 import Benefits from '../components/Benefits';
 import Testimonials from '../components/Testimonials';
@@ -16,7 +16,7 @@ const Home = () => {
       className="bg-black pt-20"
     >
       <Hero />
-      <WhyEventPass />
+      <WhyCinQ />
       <HowItWorks />
       <Benefits />
       <Testimonials />

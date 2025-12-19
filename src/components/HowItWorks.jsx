@@ -36,7 +36,7 @@ const HowItWorks = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
+          className="mb-12 text-center text-h2 font-semibold text-white"
         >
           How It Works
         </motion.h2>
@@ -60,9 +60,9 @@ const HowItWorks = () => {
               >
                 {step.icon}
               </motion.div>
-              <h3 className="text-sm uppercase tracking-[0.3em] text-gray-400">Step {step.step}</h3>
-              <h4 className="mb-3 text-lg font-semibold text-white">{step.title}</h4>
-              <p className="text-sm text-gray-400">{step.description}</p>
+              <h3 className="text-meta uppercase tracking-[0.3em] text-gray-400">Step {step.step}</h3>
+              <h4 className="mb-3 text-card-title font-semibold text-white">{step.title}</h4>
+              <p className="text-body text-gray-400">{step.description}</p>
             </motion.div>
           ))}
         </div>

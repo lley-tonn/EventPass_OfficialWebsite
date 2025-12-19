@@ -23,7 +23,7 @@ const Features = () => {
     },
     {
       title: 'Multi-Device Scanning',
-      description: 'Organizers can verify tickets using any device with the EventPass app.',
+      description: 'Organizers can verify tickets using any device with the CinQ app.',
       icon: '📷',
       details: ['Phone camera scanning', 'Offline verification', 'Real-time sync'],
     },
@@ -53,7 +53,7 @@ const Features = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
+          className="mb-12 text-center text-h1 font-semibold text-white"
         >
           Powerful Features for Everyone
         </motion.h1>
@@ -72,11 +72,11 @@ const Features = () => {
               className="rounded-2xl border border-white/5 bg-[#0f0f0f]/80 p-6 shadow-soft-glow transition-all duration-300 hover:border-white/15 cursor-pointer"
             >
               <div className="mb-4 text-2xl">{feature.icon}</div>
-              <h3 className="mb-3 text-lg font-semibold text-white">{feature.title}</h3>
-              <p className="mb-4 text-sm text-gray-400">{feature.description}</p>
-              <ul className="space-y-2 text-sm text-gray-500">
+              <h3 className="mb-3 text-card-title font-semibold text-white">{feature.title}</h3>
+              <p className="mb-4 text-body text-gray-400">{feature.description}</p>
+              <ul className="space-y-2 text-meta text-gray-500">
                 {feature.details.map((detail, detailIndex) => (
-                  <li key={detailIndex} className="flex items-center text-sm">
+                  <li key={detailIndex} className="flex items-center">
                     <span className="mr-2 text-primary">•</span>
                     {detail}
                   </li>

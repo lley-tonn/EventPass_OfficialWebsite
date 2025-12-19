@@ -6,7 +6,7 @@ const Testimonials = () => {
     {
       name: 'Sarah Johnson',
       role: 'Event Organizer',
-      content: 'EventPass has revolutionized how I manage my events. The QR verification is seamless!',
+      content: 'CinQ has revolutionized how I manage my events. The QR verification is seamless!',
       avatar: '👩‍💼',
     },
     {
@@ -30,7 +30,7 @@ const Testimonials = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-3xl font-semibold text-white md:text-4xl"
+          className="mb-12 text-center text-h2 font-semibold text-white"
         >
           What Our Users Say
         </motion.h2>
@@ -51,11 +51,11 @@ const Testimonials = () => {
               <div className="flex items-center mb-4">
                 <span className="mr-4 text-3xl">{testimonial.avatar}</span>
                 <div>
-                  <h3 className="text-base font-semibold text-white">{testimonial.name}</h3>
-                  <p className="text-sm text-gray-500">{testimonial.role}</p>
+                  <h3 className="text-card-title font-semibold text-white">{testimonial.name}</h3>
+                  <p className="text-meta text-gray-500">{testimonial.role}</p>
                 </div>
               </div>
-              <p className="text-sm text-gray-300">"{testimonial.content}"</p>
+              <p className="text-body text-gray-300">"{testimonial.content}"</p>
             </motion.div>
           ))}
         </div>
