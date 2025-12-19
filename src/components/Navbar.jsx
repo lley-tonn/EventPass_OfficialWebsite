@@ -91,7 +91,7 @@ const Navbar = () => {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="fixed top-0 w-full border-b border-white/5 bg-black/80 backdrop-blur-xl z-50"
+      className="fixed top-0 w-full z-50 glass-navbar"
     >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
@@ -156,7 +156,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="md:hidden fixed inset-0 z-40 bg-black/90 backdrop-blur-md"
+              className="md:hidden fixed inset-0 z-40 glass-navbar-backdrop"
             />
             <motion.div
               ref={menuRef}

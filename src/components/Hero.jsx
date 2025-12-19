@@ -10,7 +10,7 @@ const secondaryButton =
 const Hero = () => {
   return (
     <section 
-      className="relative flex min-h-screen items-center justify-center bg-gradient-to-b from-black via-neutral-950 to-black pt-10 pb-12"
+      className="hero-background relative flex h-screen items-center justify-center"
       aria-label="Hero section"
     >
       <div className="container mx-auto px-4 text-center">

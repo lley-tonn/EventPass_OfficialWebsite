@@ -37,50 +37,77 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Typography Scale - Base Styles */
+/* Typography Scale - Fixed Sizes */
 h1, .h1 {
-  font-size: clamp(2rem, 1.5rem + 2.5vw, 3.5rem); /* 32-56px responsive */
+  font-size: 56px;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
 h2, .h2 {
-  font-size: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem); /* 24-36px responsive */
+  font-size: 36px;
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.01em;
 }
 
 h3, .h3 {
-  font-size: clamp(1.25rem, 1.125rem + 0.625vw, 1.75rem); /* 20-28px responsive */
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: -0.01em;
 }
 
 h4, .h4 {
-  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.25rem); /* 18-20px responsive */
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.4;
 }
 
 h5, .h5 {
-  font-size: clamp(1rem, 0.9375rem + 0.3125vw, 1.125rem); /* 16-18px responsive */
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.5;
 }
 
 h6, .h6 {
-  font-size: clamp(0.875rem, 0.8125rem + 0.3125vw, 0.9375rem); /* 14-15px responsive */
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.5;
 }
 
 p {
-  font-size: clamp(0.9375rem, 0.875rem + 0.3125vw, 1.125rem); /* 15-18px responsive */
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.5;
+}
+
+/* Responsive typography for mobile devices */
+@media (max-width: 768px) {
+  h1, .h1 {
+    font-size: 40px; /* Slightly smaller on mobile for better fit */
+  }
+  
+  h2, .h2 {
+    font-size: 28px; /* Slightly smaller on mobile */
+  }
+  
+  h3, .h3 {
+    font-size: 18px; /* Slightly smaller on mobile */
+  }
+  
+  h4, .h4 {
+    font-size: 18px;
+  }
+  
+  p {
+    font-size: 16px; /* Slightly smaller on mobile for better readability */
+  }
+  
+  button {
+    font-size: 16px; /* Slightly smaller on mobile */
+  }
 }
 
 /* Input and form elements */
@@ -98,13 +125,13 @@ label {
 
 /* Helper text, error messages, meta text */
 .text-meta, .text-helper {
-  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.9375rem); /* 13-15px responsive */
+  font-size: 14px;
   line-height: 1.5;
 }
 
 /* Small text, badges, labels */
 .text-xs-custom, small {
-  font-size: clamp(0.75rem, 0.6875rem + 0.3125vw, 0.8125rem); /* 12-13px responsive, never smaller than 12px */
+  font-size: 14px; /* Minimum 14px for readability */
   line-height: 1.5;
 }
 
@@ -117,6 +144,9 @@ textarea {
 
 button {
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 input,
@@ -136,4 +166,86 @@ textarea::placeholder {
 
 .glow {
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* Hero background with image, blur, and overlay */
+.hero-background {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden; /* Prevent blur artifacts from extending beyond section */
+  height: 100vh; /* Exactly viewport height */
+  max-height: 100vh; /* Prevent overflow */
+}
+
+.hero-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(8px);
+  transform: scale(1.05); /* Slight scale to prevent blur edge artifacts */
+  will-change: transform;
+  /* Optimize rendering performance */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.hero-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.48); /* 48% opacity dark overlay */
+  will-change: opacity;
+}
+
+/* Ensure content stays above background layers */
+.hero-background > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Optimize for mobile devices */
+@media (max-width: 768px) {
+  .hero-background::before {
+    filter: blur(6px); /* Slightly less blur on mobile for performance */
+  }
+  
+  .hero-background::after {
+    background-color: rgba(0, 0, 0, 0.52); /* Slightly more opacity on mobile for better readability */
+  }
+}
+
+/* Glassmorphism Navbar - Liquid Glass Style */
+.glass-navbar {
+  background: rgba(0, 0, 0, 0.25); /* 25% opacity dark background */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+/* Ensure navbar content remains sharp */
+.glass-navbar * {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mobile menu backdrop also gets glass effect */
+.glass-navbar-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
