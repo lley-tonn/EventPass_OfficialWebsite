@@ -43,7 +43,7 @@ const Footer = () => {
                 aria-label="Visit our Facebook page"
                 className="text-gray-500 transition-all duration-200 hover:text-primary hover:-translate-y-0.5 inline-block"
               >
-                <img src={FacebookIcon} alt="" className="w-5 h-5" aria-hidden="true" />
+                <img src={FacebookIcon} alt="" className="w-5 h-5 brightness-0 invert" aria-hidden="true" />
               </a>
               <a 
                 href="https://twitter.com" 
@@ -52,7 +52,7 @@ const Footer = () => {
                 aria-label="Visit our X (Twitter) page"
                 className="text-gray-500 transition-all duration-200 hover:text-primary hover:-translate-y-0.5 inline-block"
               >
-                <img src={XIcon} alt="" className="w-5 h-5" aria-hidden="true" />
+                <img src={XIcon} alt="" className="w-5 h-5 brightness-0 invert" aria-hidden="true" />
               </a>
               <a 
                 href="https://instagram.com" 
@@ -61,7 +61,7 @@ const Footer = () => {
                 aria-label="Visit our Instagram page"
                 className="text-gray-500 transition-all duration-200 hover:text-primary hover:-translate-y-0.5 inline-block"
               >
-                <img src={InstagramIcon} alt="" className="w-5 h-5" aria-hidden="true" />
+                <img src={InstagramIcon} alt="" className="w-5 h-5 brightness-0 invert" aria-hidden="true" />
               </a>
             </div>
             <a href="mailto:support@cinq.ug" className="text-body text-gray-500 mb-1.5 block transition-colors duration-200 hover:text-gray-300">support@cinq.ug</a>

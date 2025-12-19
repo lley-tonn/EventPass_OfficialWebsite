@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import FacebookIcon from '../assets/facebook_icon.svg';
+import XIcon from '../assets/x_icon.svg';
+import InstagramIcon from '../assets/instagram_icon.svg';
+import TikTokIcon from '../assets/tiktok_icon.svg';
 
 const Contact = () => {
+  const prefersReducedMotion = useReducedMotion();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,6 +15,33 @@ const Contact = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const socialLinks = [
+    {
+      name: 'Facebook',
+      url: 'https://facebook.com',
+      icon: FacebookIcon,
+      ariaLabel: 'Visit our Facebook page',
+    },
+    {
+      name: 'X (Twitter)',
+      url: 'https://twitter.com',
+      icon: XIcon,
+      ariaLabel: 'Visit our X (Twitter) page',
+    },
+    {
+      name: 'Instagram',
+      url: 'https://instagram.com',
+      icon: InstagramIcon,
+      ariaLabel: 'Visit our Instagram page',
+    },
+    {
+      name: 'TikTok',
+      url: 'https://tiktok.com',
+      icon: TikTokIcon,
+      ariaLabel: 'Visit our TikTok page',
+    },
+  ];
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -183,38 +215,63 @@ const Contact = () => {
                 </p>
               )}
             </div>
-            <button
+            <motion.button
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-xl border border-primary/60 bg-primary py-3 text-button font-semibold tracking-wide text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-soft-glow disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+              whileHover={prefersReducedMotion || isSubmitting ? {} : { scale: 1.02 }}
+              whileTap={prefersReducedMotion || isSubmitting ? {} : { scale: 0.98 }}
+              transition={{ duration: 0.15, ease: 'easeOut' }}
+              className="w-full rounded-xl border border-primary/60 bg-primary py-3 text-button font-semibold tracking-wide text-black transition-opacity duration-200 hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
+            </motion.button>
           </motion.form>
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.2, delay: 0.4 }}
             className="mt-12 text-center text-gray-400"
           >
             <h2 className="text-h2 font-semibold text-white mb-4">Other Ways to Reach Us</h2>
             <div className="space-y-2 text-body">
               <p>
                 <span className="text-gray-500">Email:</span>{' '}
-                <a href="mailto:support@cinq.ug" className="text-gray-400 hover:text-primary transition-colors">
+                <a href="mailto:support@cinq.ug" className="text-gray-400 hover:text-primary transition-colors duration-200">
                   support@cinq.ug
                 </a>
               </p>
               <p>
                 <span className="text-gray-500">Phone:</span>{' '}
-                <a href="tel:+256123456789" className="text-gray-400 hover:text-primary transition-colors">
+                <a href="tel:+256123456789" className="text-gray-400 hover:text-primary transition-colors duration-200">
                   +256 123 456 789
                 </a>
               </p>
-              <div className="mt-4 flex justify-center space-x-4 text-body">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 transition-colors hover:text-primary">Facebook</a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 transition-colors hover:text-primary">Twitter</a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 transition-colors hover:text-primary">Instagram</a>
+            </div>
+            
+            {/* Social Media Icons */}
+            <div className="mt-8">
+              <h3 className="text-h3 font-semibold text-white mb-4">Follow Us</h3>
+              <div className="flex justify-center items-center gap-6">
+                {socialLinks.map((social) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.ariaLabel}
+                    whileHover={prefersReducedMotion ? {} : { scale: 1.1 }}
+                    whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                    transition={{ duration: 0.15, ease: 'easeOut' }}
+                    className="inline-flex items-center justify-center w-10 h-10 rounded-lg transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  >
+                    <img 
+                      src={social.icon} 
+                      alt="" 
+                      className="w-8 h-8 brightness-0 invert" 
+                      aria-hidden="true"
+                    />
+                  </motion.a>
+                ))}
               </div>
             </div>
           </motion.div>

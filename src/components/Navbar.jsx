@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 const navButtonClasses =
-  'rounded-lg border border-primary/60 bg-primary px-4 py-2 text-button font-semibold uppercase tracking-[0.2em] text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:text-black hover:shadow-soft-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50';
+  'rounded-lg border border-primary/60 bg-primary px-4 py-2 text-button font-semibold uppercase tracking-[0.2em] text-black transition-opacity duration-200 hover:bg-primary/90 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50';
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -15,6 +15,7 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const prefersReducedMotion = useReducedMotion();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -86,35 +87,64 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
+  const navAnimation = {
+    initial: { opacity: 0, y: prefersReducedMotion ? 0 : -20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: prefersReducedMotion ? 0 : 0.3, ease: 'easeOut' },
+  };
+
   return (
     <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="fixed top-0 w-full z-50 glass-navbar"
+      {...navAnimation}
+      className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4"
     >
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="text-nav font-semibold uppercase tracking-[0.3em] text-primary">
+      <div className="floating-navbar w-full max-w-7xl">
+        <div className="flex h-14 md:h-16 items-center justify-between px-4 md:px-6">
+          <Link 
+            to="/" 
+            className="text-nav font-semibold uppercase tracking-[0.3em] text-primary transition-opacity duration-200 hover:opacity-80"
+          >
             CinQ UG
           </Link>
-          <div className="hidden md:flex items-center space-x-6 text-nav font-medium">
+          <div className="hidden md:flex items-center space-x-8 text-nav font-medium">
             {navLinks.map((link) => (
-              <Link key={link.to} to={link.to} className="text-gray-400 transition-all duration-300 hover:text-white hover:tracking-wide">
+              <Link 
+                key={link.to} 
+                to={link.to} 
+                className="text-gray-300 transition-opacity duration-200 hover:text-white hover:opacity-100 relative group"
+              >
                 {link.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
               </Link>
             ))}
           </div>
           <div className="hidden md:flex gap-3">
-            <button className={navButtonClasses}>Android</button>
-            <button className={navButtonClasses}>iOS</button>
+            <motion.button 
+              whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
+              whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className={navButtonClasses}
+            >
+              Android
+            </motion.button>
+            <motion.button 
+              whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
+              whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className={navButtonClasses}
+            >
+              iOS
+            </motion.button>
           </div>
-          <button
+          <motion.button
             type="button"
             onClick={toggleMenu}
             aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={isMenuOpen}
-            className="md:hidden rounded-full border border-white/10 p-2 text-white transition-all duration-300 hover:border-primary/60 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
+            whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            className="md:hidden rounded-full border border-white/10 p-2 text-white transition-opacity duration-200 hover:border-primary/60 hover:text-primary hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
               <motion.path
@@ -142,7 +172,7 @@ const Navbar = () => {
                 transition={{ duration: 0.3 }}
               />
             </svg>
-          </button>
+          </motion.button>
         </div>
       </div>
       <AnimatePresence>
