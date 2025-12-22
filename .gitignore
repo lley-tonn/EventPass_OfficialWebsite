@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+.claude/
 /.pnp
 .pnp.js
 
@@ -10,7 +11,7 @@ node_modules/
 /build
 /dist
 
-# Misc
+# Misc  
 .DS_Store
 .env
 .env.local

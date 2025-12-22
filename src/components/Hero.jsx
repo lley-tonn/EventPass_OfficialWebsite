@@ -67,19 +67,19 @@ const Hero = () => {
         </motion.nav>
       </div>
       {!prefersReducedMotion && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
           transition={{ duration: 0.2, delay: 0.3 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2"
-          aria-hidden="true"
-        >
-          <div className="animate-bounce">
-            <svg className="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
-        </motion.div>
+        className="absolute bottom-6 left-1/2 -translate-x-1/2"
+        aria-hidden="true"
+      >
+        <div className="animate-bounce">
+          <svg className="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      </motion.div>
       )}
     </section>
   );
