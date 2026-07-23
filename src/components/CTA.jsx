@@ -1,46 +1,43 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import Button from './ui/Button';
 
 const CTA = () => {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section className="py-16 bg-[#0d0d0d] text-white border-t border-b border-white/5">
-      <div className="container mx-auto px-4 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-4 text-h2 font-semibold"
-        >
-          Ready to Experience CinQ?
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mb-8 max-w-2xl text-body text-gray-400"
-        >
-          Join thousands of users and organizers already using CinQ for seamless event experiences.
-        </motion.p>
+    <section className="section-padding relative overflow-hidden" aria-labelledby="cta-heading">
+      <div className="absolute inset-0 bg-gradient-radial from-primary/[0.08] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-noise opacity-[0.02] mix-blend-overlay" aria-hidden="true" />
+      
+      <div className="container relative text-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col justify-center gap-3 sm:flex-row"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="rounded-lg border border-primary/60 bg-primary px-6 py-3 text-button font-semibold tracking-wide text-black transition-all duration-300 hover:bg-primary/90 hover:shadow-soft-glow"
+          <span className="inline-block text-label uppercase tracking-[0.2em] text-primary mb-4">Get Started</span>
+          <h2
+            id="cta-heading"
+            className="text-section-title font-bold text-white mb-6"
           >
-            Download for Android
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="rounded-lg border border-primary/40 bg-transparent px-6 py-3 text-button font-semibold tracking-wide text-primary transition-all duration-300 hover:bg-primary/5 hover:text-white hover:shadow-soft-glow"
-          >
-            Download for iOS
-          </motion.button>
+            Ready to power your events?
+          </h2>
+          <p className="mx-auto mb-10 max-w-2xl text-body text-gray-400">
+            Join thousands of organizers and attendees across Africa already using EventPass for seamless event experiences.
+          </p>
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col justify-center gap-4 sm:flex-row sm:gap-5"
+        >
+          <Button ariaLabel="Download EventPass for Android">Download for Android</Button>
+          <Button variant="secondary" ariaLabel="Download EventPass for iOS">Download for iOS</Button>
         </motion.div>
       </div>
     </section>

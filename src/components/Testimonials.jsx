@@ -1,73 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
+import { TESTIMONIALS } from '../constants/brand';
 
 const Testimonials = () => {
   const prefersReducedMotion = useReducedMotion();
   const [startIndex, setStartIndex] = useState(0);
+  const testimonials = TESTIMONIALS;
 
-  const testimonials = [
-    {
-      name: 'Sarah J.',
-      role: 'Event Organizer',
-      content: 'CinQ has revolutionized how I manage my events. The QR verification is seamless!',
-      avatar: '👩‍💼',
-      rating: 5,
-    },
-    {
-      name: 'Michael C.',
-      role: 'Music Fan',
-      content: 'Buying tickets has never been easier. The app is intuitive and fast.',
-      avatar: '👨‍🎤',
-      rating: 5,
-    },
-    {
-      name: 'Emma D.',
-      role: 'Tech Enthusiast',
-      content: 'Love the push notifications and personalized event suggestions. Highly recommended!',
-      avatar: '👩‍💻',
-      rating: 5,
-    },
-    {
-      name: 'David K.',
-      role: 'Festival Goer',
-      content: 'The QR code entry is so smooth. No more waiting in long lines!',
-      avatar: '🎪',
-      rating: 5,
-    },
-    {
-      name: 'Grace M.',
-      role: 'Concert Lover',
-      content: 'Best ticketing platform in Uganda. Secure payments and instant tickets.',
-      avatar: '🎵',
-      rating: 5,
-    },
-    {
-      name: 'James T.',
-      role: 'Business Owner',
-      content: 'As an event organizer, CinQ has made ticket sales management effortless.',
-      avatar: '💼',
-      rating: 5,
-    },
-    {
-      name: 'Linda A.',
-      role: 'Event Attendee',
-      content: 'Quick ticket purchase and easy entry. The app works perfectly every time!',
-      avatar: '🎫',
-      rating: 5,
-    },
-    {
-      name: 'Robert P.',
-      role: 'Music Producer',
-      content: 'Managing ticket sales for my events has never been this simple and efficient.',
-      avatar: '🎼',
-      rating: 5,
-    },
-  ];
-
-  // Get 4 testimonials to display based on startIndex
+  // Get 3 testimonials to display based on startIndex
   const getDisplayedTestimonials = () => {
     const displayed = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       const index = (startIndex + i) % testimonials.length;
       displayed.push(testimonials[index]);
     }
@@ -103,38 +46,54 @@ const Testimonials = () => {
   const displayedTestimonials = getDisplayedTestimonials();
 
   return (
-    <section className="py-20 bg-[#050505]" aria-labelledby="testimonials-heading">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          id="testimonials-heading"
+    <section className="section-padding relative bg-surface-raised/30" aria-labelledby="testimonials-heading">
+      <div className="absolute inset-0 bg-gradient-radial from-primary/[0.04] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-noise opacity-[0.02] mix-blend-overlay" aria-hidden="true" />
+      
+      <div className="container relative">
+        <motion.div
           {...sectionAnimation}
-          className="mb-12 text-center text-h2 font-semibold text-white"
+          className="text-center mb-16"
         >
-          What Our Users Say
-        </motion.h2>
+          <span className="inline-block text-label uppercase tracking-[0.2em] text-primary mb-4">Stories</span>
+          <h2
+            id="testimonials-heading"
+            className="text-section-title font-bold text-white mb-4"
+          >
+            Loved by organizers & attendees
+          </h2>
+          <p className="text-body text-gray-400 max-w-2xl mx-auto">
+            Real stories from real people powering events across Africa with EventPass.
+          </p>
+        </motion.div>
 
         {/* Testimonial Cards Grid */}
         <div className="relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={startIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: prefersReducedMotion ? 0 : 0.25, ease: 'easeInOut' }}
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
             >
               {displayedTestimonials.map((testimonial, cardIndex) => {
                 const globalIndex = (startIndex + cardIndex) % testimonials.length;
                 return (
-                  <div
+                  <motion.div
                     key={`card-${cardIndex}-${globalIndex}`}
-                    className="relative h-full min-h-[280px]"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: cardIndex * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative h-full"
                   >
-                    <div className="h-full rounded-2xl border border-white/5 bg-[rgba(15,15,15,0.85)] p-6 shadow-soft-glow flex flex-col">
-                      <div className="flex items-center mb-4">
-                        <span className="mr-3 text-3xl">{testimonial.avatar}</span>
-                        <div>
+                    <div className="h-full rounded-card border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-transparent p-6 shadow-card hover:shadow-card-hover transition-all duration-300 group">
+                      <div className="flex items-center mb-5">
+                        <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center text-primary font-bold text-lg border border-primary/20">
+                          {testimonial.initials}
+                        </div>
+                        <div className="ml-4">
                           <h3 className="text-card-title font-semibold text-white">
                             {testimonial.name}
                           </h3>
@@ -149,8 +108,13 @@ const Testimonials = () => {
                       <p className="text-body text-gray-300 leading-relaxed flex-grow">
                         "{testimonial.content}"
                       </p>
+                      <div className="mt-4 pt-4 border-t border-white/[0.05]">
+                        <span className="text-label uppercase tracking-wider text-gray-600">
+                          {testimonial.type === 'organizer' ? 'Organizer' : 'Attendee'}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </motion.div>
@@ -158,29 +122,31 @@ const Testimonials = () => {
 
           {/* Navigation Controls */}
           {!prefersReducedMotion && (
-            <div className="flex items-center justify-center gap-4 mt-8">
-              <button
+            <div className="flex items-center justify-center gap-6 mt-12">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handlePrev}
                 aria-label="Previous testimonials"
-                className="rounded-full border border-white/10 bg-black/50 p-2 text-white transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                className="rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm p-3 text-white transition-all duration-300 hover:border-primary/30 hover:bg-white/[0.08] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
-              </button>
+              </motion.button>
               
               {/* Dot Indicators */}
               <div className="flex gap-2">
-                {Array.from({ length: Math.ceil(testimonials.length / 4) }).map((_, groupIndex) => {
-                  const isActive = Math.floor(startIndex / 4) === groupIndex;
+                {Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, groupIndex) => {
+                  const isActive = Math.floor(startIndex / 3) === groupIndex;
                   return (
                     <button
                       key={groupIndex}
-                      onClick={() => setStartIndex(groupIndex * 4)}
+                      onClick={() => setStartIndex(groupIndex * 3)}
                       aria-label={`Go to testimonial group ${groupIndex + 1}`}
-                      className={`h-2 rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+                      className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
                         isActive
-                          ? 'w-8 bg-primary'
+                          ? 'w-8 bg-primary shadow-glow'
                           : 'w-2 bg-white/20 hover:bg-white/40'
                       }`}
                     />
@@ -188,15 +154,17 @@ const Testimonials = () => {
                 })}
               </div>
 
-              <button
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleNext}
                 aria-label="Next testimonials"
-                className="rounded-full border border-white/10 bg-black/50 p-2 text-white transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                className="rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm p-3 text-white transition-all duration-300 hover:border-primary/30 hover:bg-white/[0.08] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </button>
+              </motion.button>
             </div>
           )}
         </div>

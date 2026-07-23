@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 const navButtonClasses =
-  'rounded-lg border border-primary/60 bg-primary px-4 py-2 text-button font-semibold uppercase tracking-[0.2em] text-black transition-opacity duration-200 hover:bg-primary/90 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50';
+  'rounded-button border border-primary/60 bg-primary px-5 py-2.5 text-button font-semibold uppercase tracking-[0.15em] text-black transition-all duration-300 hover:bg-primary/90 hover:shadow-glow hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40';
 
 const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/features', label: 'Features' },
+  { to: '/#features', label: 'Features' },
+  { to: '/#organizers', label: 'Organizers' },
+  { to: '/#attendees', label: 'Attendees' },
   { to: '/faqs', label: 'FAQ' },
-  { to: '/help-center', label: 'Help Center' },
   { to: '/contact', label: 'Contact' },
 ];
 
@@ -102,19 +101,19 @@ const Navbar = () => {
         <div className="flex h-14 md:h-16 items-center justify-between px-4 md:px-6">
           <Link 
             to="/" 
-            className="text-nav font-semibold uppercase tracking-[0.3em] text-primary transition-opacity duration-200 hover:opacity-80"
+            className="text-nav font-bold uppercase tracking-[0.25em] text-primary transition-all duration-300 hover:opacity-90 hover:scale-105"
           >
-            CinQ UG
+            EventPass
           </Link>
-          <div className="hidden md:flex items-center space-x-8 text-nav font-medium">
+          <div className="hidden md:flex items-center space-x-10 text-nav font-medium">
             {navLinks.map((link) => (
               <Link 
                 key={link.to} 
                 to={link.to} 
-                className="text-gray-300 transition-opacity duration-200 hover:text-white hover:opacity-100 relative group"
+                className="text-gray-400 transition-all duration-300 hover:text-white hover:opacity-100 relative group"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:shadow-glow"></span>
               </Link>
             ))}
           </div>
