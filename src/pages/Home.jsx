@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import Hero from '../components/Hero';
-import UpcomingEvents from '../components/UpcomingEvents';
-import WhyCinQ from '../components/WhyCinQ';
-import HowItWorks from '../components/HowItWorks';
-import Benefits from '../components/Benefits';
+import Hero from '../components/landing/Hero';
+import TrustSection from '../components/landing/TrustSection';
+import FeaturesSection from '../components/landing/FeaturesSection';
+import OrganizerExperience from '../components/landing/OrganizerExperience';
+import AttendeeExperience from '../components/landing/AttendeeExperience';
 import Testimonials from '../components/Testimonials';
 import CTA from '../components/CTA';
 
@@ -16,13 +16,13 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
-      className="bg-black"
+      className="bg-surface"
     >
       <Hero />
-      <UpcomingEvents />
-      <WhyCinQ />
-      <HowItWorks />
-      <Benefits />
+      <TrustSection />
+      <FeaturesSection />
+      <OrganizerExperience />
+      <AttendeeExperience />
       <Testimonials />
       <CTA />
     </motion.div>
